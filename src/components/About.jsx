@@ -42,7 +42,7 @@ function About() {
 
         <div data-reveal="right" className="rounded-3xl border border-slate-200 bg-white p-7 shadow-card sm:p-8">
           <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-brand-300 bg-gradient-to-br from-brand-100 to-accent-100 text-3xl font-bold text-brand-700">
-            GD
+            GW
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">

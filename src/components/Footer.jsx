@@ -11,14 +11,18 @@ function Footer() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#"
+            href="https://github.com/gokuworks3"
+            target="_blank"
+            rel="noreferrer"
             aria-label="GitHub"
             className="rounded-full border border-slate-700 bg-slate-800 p-2.5 text-slate-100 transition-colors hover:border-brand-400 hover:text-brand-300"
           >
             <Github size={18} />
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/goku-works-32a9a73b7/"
+            target="_blank"
+            rel="noreferrer"
             aria-label="LinkedIn"
             className="rounded-full border border-slate-700 bg-slate-800 p-2.5 text-slate-100 transition-colors hover:border-brand-400 hover:text-brand-300"
           >
