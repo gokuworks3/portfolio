@@ -8,9 +8,15 @@ const initialFormState = {
   message: ''
 };
 
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/gokuworks3@gmail.com';
+
 function Contact() {
   const [formData, setFormData] = useState(initialFormState);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({
+    type: 'idle',
+    message: 'I usually reply within 24 hours.'
+  });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -21,15 +27,56 @@ function Contact() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setIsSubmitted(true);
-    setFormData(initialFormState);
+    if (isSubmitting) {
+      return;
+    }
 
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
+    setIsSubmitting(true);
+    setSubmitStatus({
+      type: 'idle',
+      message: 'Sending your message...'
+    });
+
+    try {
+      const response = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New portfolio enquiry from ${formData.name}`,
+          _replyto: formData.email,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(result?.message || 'Failed to send message.');
+      }
+
+      setFormData(initialFormState);
+      setSubmitStatus({
+        type: 'success',
+        message: 'Thanks! Your message has been sent.'
+      });
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Could not send right now. Please email directly at gokuworks3@gmail.com.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -132,15 +179,21 @@ function Contact() {
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-4">
-            <button type="submit" className="btn-accent rounded-lg px-5 py-3">
-              Send Message
+            <button type="submit" disabled={isSubmitting} className="btn-accent rounded-lg px-5 py-3 disabled:cursor-not-allowed disabled:opacity-60">
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
 
-            {isSubmitted ? (
-              <p className="text-sm font-semibold text-emerald-700">Thanks! Your message has been sent.</p>
-            ) : (
-              <p className="text-sm text-slate-500">I usually reply within 24 hours.</p>
-            )}
+            <p
+              className={`text-sm ${
+                submitStatus.type === 'success'
+                  ? 'font-semibold text-emerald-700'
+                  : submitStatus.type === 'error'
+                    ? 'font-semibold text-rose-700'
+                    : 'text-slate-500'
+              }`}
+            >
+              {submitStatus.message}
+            </p>
           </div>
         </form>
       </div>
