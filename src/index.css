@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-100 font-sans text-slate-800 antialiased;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(186, 230, 253, 0.45), transparent 36%),
+      radial-gradient(circle at 85% 5%, rgba(204, 251, 241, 0.4), transparent 30%),
+      linear-gradient(to bottom, rgba(248, 250, 252, 1), rgba(241, 245, 249, 1));
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-brand-300/70 text-slate-900;
+  }
+}
+
+@layer utilities {
+  .section-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-slate-200 bg-white/85 shadow-soft backdrop-blur-sm;
+  }
+
+  .grain-overlay {
+    background-image:
+      radial-gradient(rgba(15, 23, 42, 0.03) 0.55px, transparent 0.55px),
+      radial-gradient(rgba(15, 23, 42, 0.02) 0.55px, transparent 0.55px);
+    background-size: 22px 22px;
+    background-position: 0 0, 11px 11px;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-800;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 px-5 py-3 text-sm font-semibold text-white shadow-emerald transition-all duration-200 hover:-translate-y-0.5 hover:from-brand-500 hover:to-accent-500;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white/80 px-5 py-3 text-sm font-semibold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-700;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-700 via-cyan-600 to-accent-600 bg-clip-text text-transparent;
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  [data-reveal='left'] {
+    transform: translateX(-26px);
+  }
+
+  [data-reveal='right'] {
+    transform: translateX(26px);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
