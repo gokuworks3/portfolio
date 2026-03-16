@@ -30,7 +30,7 @@ function Projects() {
     <section id="projects" className="section-spacing section-container scroll-mt-24">
       <SectionHeading
         eyebrow="Featured Work"
-        title="Recent Projects"
+        title="Demo Projects"
         description="Client-focused websites crafted for speed, usability, and a polished business presence."
         centered
       />

@@ -44,7 +44,7 @@ function Contact() {
       <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
         <div data-reveal="left" className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-7">
           <a
-            href="mailto:gokul@example.com"
+            href="mailto:gokuworks3@gmail.com"
             className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand-300"
           >
             <span className="rounded-lg border border-brand-200 bg-brand-100 p-2 text-brand-700">
@@ -52,12 +52,12 @@ function Contact() {
             </span>
             <div>
               <p className="text-xs uppercase tracking-[0.12em] text-slate-500">Email</p>
-              <p className="text-sm font-semibold text-slate-900">gokul@example.com</p>
+              <p className="text-sm font-semibold text-slate-900">gokuworks3@gmail.com</p>
             </div>
           </a>
 
           <a
-            href="tel:+919876543210"
+            href="tel:+919342272925"
             className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand-300"
           >
             <span className="rounded-lg border border-brand-200 bg-brand-100 p-2 text-brand-700">
@@ -65,12 +65,12 @@ function Contact() {
             </span>
             <div>
               <p className="text-xs uppercase tracking-[0.12em] text-slate-500">Phone</p>
-              <p className="text-sm font-semibold text-slate-900">+91 98765 43210</p>
+              <p className="text-sm font-semibold text-slate-900">9342272925</p>
             </div>
           </a>
 
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/919342272925"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-emerald-300"
