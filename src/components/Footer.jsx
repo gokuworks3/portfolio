@@ -1,12 +1,14 @@
 import { Github, Linkedin } from 'lucide-react';
+import brandLogo from '../assets/brand-logo.png';
 
 function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-slate-900">
       <div className="section-container flex flex-col items-center justify-between gap-4 py-8 text-center sm:flex-row sm:text-left">
         <div>
-          <p className="text-lg font-semibold text-white">Goku Works</p>
-          <p className="mt-1 text-sm text-slate-300">© 2025 Goku Works. All rights reserved.</p>
+          <img src={brandLogo} alt="Gopalakrishan M logo" className="h-12 w-auto rounded-md object-contain" />
+          <p className="mt-2 text-lg font-semibold text-white">Gopalakrishan M</p>
+          <p className="mt-1 text-sm text-slate-300">© {new Date().getFullYear()} Gopalakrishan M. All rights reserved.</p>
         </div>
 
         <div className="flex items-center gap-3">

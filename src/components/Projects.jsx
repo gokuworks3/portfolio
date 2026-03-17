@@ -1,5 +1,8 @@
 import { ExternalLink } from 'lucide-react';
 import SectionHeading from './SectionHeading';
+import restaurantPreview from '../assets/project-restaurant.jpg';
+import gymPreview from '../assets/project-gym.jpg';
+import hotelPreview from '../assets/project-hotel.jpg';
 
 const projects = [
   {
@@ -7,21 +10,24 @@ const projects = [
     description: 'A modern restaurant website with menu, gallery, and contact sections.',
     url: 'https://first-bites-demo1.vercel.app/',
     palette: 'from-orange-400 via-amber-400 to-rose-400',
-    tag: 'Restaurant'
+    tag: 'Restaurant',
+    image: restaurantPreview
   },
   {
     name: 'Fit Zone - Gym Website',
     description: 'A fitness center website showing gym programs, trainers, and membership plans.',
     url: 'https://fit-zone-lyart.vercel.app/',
     palette: 'from-emerald-400 via-teal-400 to-cyan-400',
-    tag: 'Gym'
+    tag: 'Gym',
+    image: gymPreview
   },
   {
     name: 'Dream Stay - Hotel Website',
     description: 'A hotel website showcasing rooms, services, gallery, and booking contact section.',
     url: 'https://dream-stay-phi.vercel.app/',
     palette: 'from-sky-400 via-cyan-400 to-blue-500',
-    tag: 'Hotel'
+    tag: 'Hotel',
+    image: hotelPreview
   }
 ];
 
@@ -51,11 +57,17 @@ function Projects() {
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
                 </div>
                 <div className={`relative h-44 bg-gradient-to-br ${project.palette}`}>
-                  <div className="absolute inset-0 bg-slate-900/20" />
-                  <div className="absolute left-4 top-4 rounded-full border border-white/55 bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white backdrop-blur">
+                  <img
+                    src={project.image}
+                    alt={`${project.tag} project preview`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-slate-900/18" />
+                  <div className="absolute left-4 top-4 z-10 rounded-full border border-white/55 bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white backdrop-blur">
                     {project.tag}
                   </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute inset-0 z-10 flex items-center justify-center">
                     <p className="px-4 text-center text-xl font-bold text-white sm:text-2xl">{project.name}</p>
                   </div>
                 </div>

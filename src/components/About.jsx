@@ -1,4 +1,5 @@
 import SectionHeading from './SectionHeading';
+import brandIcon from '../assets/brand-icon.png';
 
 const skills = ['Clean Design', 'Mobile-First', 'Fast Performance', 'User-Friendly UX'];
 
@@ -10,7 +11,7 @@ function About() {
           <SectionHeading
             eyebrow="About"
             title="Building Strong Digital Presence for Local Businesses"
-            description="Gokul is a web developer who specializes in building modern and responsive websites for small businesses like restaurants, gyms, and hotels. He focuses on clean design, fast performance, and mobile-friendly user experience."
+            description="Gopalakrishan M is a web developer who specializes in building modern and responsive websites for small businesses like restaurants, gyms, and hotels. He focuses on clean design, fast performance, and mobile-friendly user experience."
           />
 
           <div className="mt-7 flex flex-wrap gap-3">
@@ -41,8 +42,8 @@ function About() {
         </div>
 
         <div data-reveal="right" className="rounded-3xl border border-slate-200 bg-white p-7 shadow-card sm:p-8">
-          <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-brand-300 bg-gradient-to-br from-brand-100 to-accent-100 text-3xl font-bold text-brand-700">
-            GW
+          <div className="mx-auto flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border border-brand-300 bg-slate-950 shadow-soft">
+            <img src={brandIcon} alt="Gopalakrishan M logo" className="h-[84%] w-[84%] object-contain" />
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">

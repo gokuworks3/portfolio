@@ -9,7 +9,7 @@ function Hero() {
             Freelance Web Developer
           </p>
           <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Hi, I'm <span className="gradient-text">Gokul</span>
+            Hi, I'm <span className="gradient-text">Gopalakrishan M</span>
           </h1>
           <p className="mt-5 text-lg font-semibold text-brand-700 sm:text-xl">
             I build modern websites for small businesses

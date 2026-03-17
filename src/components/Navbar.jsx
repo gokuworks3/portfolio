@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import brandIcon from '../assets/brand-icon.png';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -33,9 +34,9 @@ function Navbar() {
         }`}
       >
         <div className="flex items-center justify-between px-4 py-3 sm:px-5">
-          <a href="#home" className="flex items-center gap-2 text-base font-extrabold tracking-wide text-slate-900 sm:text-lg">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-sm text-white shadow-soft">
-              G
+          <a href="#home" className="flex items-center gap-3 text-base font-extrabold tracking-wide text-slate-900 sm:text-lg">
+            <span className="inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-slate-950 p-0.5 shadow-soft">
+              <img src={brandIcon} alt="Goku Works logo" className="h-full w-full object-contain" />
             </span>
             Goku Works
             <span className="hidden h-2.5 w-2.5 animate-pulseSoft rounded-full bg-accent-500 sm:inline-flex" />
