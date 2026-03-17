@@ -3,6 +3,7 @@ import SectionHeading from './SectionHeading';
 import restaurantPreview from '../assets/project-restaurant.jpg';
 import gymPreview from '../assets/project-gym.jpg';
 import hotelPreview from '../assets/project-hotel.jpg';
+import photographyPreview from '../assets/project-photography.jpg';
 
 const projects = [
   {
@@ -28,6 +29,14 @@ const projects = [
     palette: 'from-sky-400 via-cyan-400 to-blue-500',
     tag: 'Hotel',
     image: hotelPreview
+  },
+  {
+    name: 'Alex Monroe - Photography Portfolio',
+    description: 'A photography portfolio website showcasing stunning visual work with an elegant, immersive gallery experience.',
+    url: 'https://photography-virid-eight.vercel.app/',
+    palette: 'from-violet-400 via-purple-400 to-fuchsia-400',
+    tag: 'Photography',
+    image: photographyPreview
   }
 ];
 
@@ -57,12 +66,14 @@ function Projects() {
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
                 </div>
                 <div className={`relative h-44 bg-gradient-to-br ${project.palette}`}>
+                  {project.image && (
                   <img
                     src={project.image}
                     alt={`${project.tag} project preview`}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  )}
                   <div className="absolute inset-0 bg-slate-900/18" />
                   <div className="absolute left-4 top-4 z-10 rounded-full border border-white/55 bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white backdrop-blur">
                     {project.tag}
