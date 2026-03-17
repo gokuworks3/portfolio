@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 import restaurantPreview from '../assets/project-restaurant.jpg';
 import gymPreview from '../assets/project-gym.jpg';
@@ -7,35 +7,39 @@ import photographyPreview from '../assets/project-photography.jpg';
 
 const projects = [
   {
-    name: 'First Bites - Restaurant Website',
-    description: 'A modern restaurant website with menu, gallery, and contact sections.',
+    name: 'First Bites',
+    subtitle: 'Restaurant Website',
+    description: 'Modern restaurant website with menu, gallery, and contact sections.',
     url: 'https://first-bites-demo1.vercel.app/',
-    palette: 'from-orange-400 via-amber-400 to-rose-400',
     tag: 'Restaurant',
+    tagColor: 'bg-orange-100 text-orange-700 border-orange-200',
     image: restaurantPreview
   },
   {
-    name: 'Fit Zone - Gym Website',
-    description: 'A fitness center website showing gym programs, trainers, and membership plans.',
+    name: 'Fit Zone',
+    subtitle: 'Gym Website',
+    description: 'Fitness center website with programs, trainers, and membership plans.',
     url: 'https://fit-zone-lyart.vercel.app/',
-    palette: 'from-emerald-400 via-teal-400 to-cyan-400',
     tag: 'Gym',
+    tagColor: 'bg-emerald-100 text-emerald-700 border-emerald-200',
     image: gymPreview
   },
   {
-    name: 'Dream Stay - Hotel Website',
-    description: 'A hotel website showcasing rooms, services, gallery, and booking contact section.',
+    name: 'Dream Stay',
+    subtitle: 'Hotel Website',
+    description: 'Hotel website showcasing rooms, services, and booking section.',
     url: 'https://dream-stay-phi.vercel.app/',
-    palette: 'from-sky-400 via-cyan-400 to-blue-500',
     tag: 'Hotel',
+    tagColor: 'bg-sky-100 text-sky-700 border-sky-200',
     image: hotelPreview
   },
   {
-    name: 'Alex Monroe - Photography Portfolio',
-    description: 'A photography portfolio website showcasing stunning visual work with an elegant, immersive gallery experience.',
-    url: 'https://photography-virid-eight.vercel.app/',
-    palette: 'from-violet-400 via-purple-400 to-fuchsia-400',
+    name: 'Lens & Light',
+    subtitle: 'Photography Portfolio',
+    description: 'Stunning photography portfolio with gallery and booking contact.',
+    url: 'https://lens-light-portfolio.vercel.app/',
     tag: 'Photography',
+    tagColor: 'bg-violet-100 text-violet-700 border-violet-200',
     image: photographyPreview
   }
 ];
@@ -46,60 +50,73 @@ function Projects() {
       <SectionHeading
         eyebrow="Featured Work"
         title="Demo Projects"
-        description="Client-focused websites crafted for speed, usability, and a polished business presence."
+        description="Sample websites showcasing my skills in building fast, responsive, and visually appealing websites."
         centered
       />
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-12 grid gap-8 md:grid-cols-2">
         {projects.map((project, index) => (
           <article
             key={project.name}
             data-reveal="up"
-            style={{ transitionDelay: `${index * 110}ms` }}
-            className="group overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-brand-300 hover:shadow-card"
+            style={{ transitionDelay: `${index * 100}ms` }}
+            className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-brand-300 hover:shadow-card"
           >
-            <div className="relative p-4">
-              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
-                <div className="flex items-center gap-1.5 border-b border-slate-200 bg-slate-50 px-3 py-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-rose-400" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+            {/* Browser Window Frame */}
+            <div className="border-b border-slate-200 bg-slate-50 px-4 py-3">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-3 w-3 rounded-full bg-rose-400" />
+                  <span className="h-3 w-3 rounded-full bg-amber-400" />
+                  <span className="h-3 w-3 rounded-full bg-emerald-400" />
                 </div>
-                <div className={`relative h-44 bg-gradient-to-br ${project.palette}`}>
-                  {project.image && (
-                  <img
-                    src={project.image}
-                    alt={`${project.tag} project preview`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  )}
-                  <div className="absolute inset-0 bg-slate-900/18" />
-                  <div className="absolute left-4 top-4 z-10 rounded-full border border-white/55 bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white backdrop-blur">
-                    {project.tag}
-                  </div>
-                  <div className="absolute inset-0 z-10 flex items-center justify-center">
-                    <p className="px-4 text-center text-xl font-bold text-white sm:text-2xl">{project.name}</p>
-                  </div>
+                <div className="flex-1 rounded-lg bg-white border border-slate-200 px-3 py-1.5 text-xs text-slate-400 truncate">
+                  {project.url.replace('https://', '')}
                 </div>
               </div>
             </div>
 
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-slate-900">{project.name}</h3>
+            {/* Homepage Preview Image */}
+            <div className="relative overflow-hidden bg-slate-100">
+              <img
+                src={project.image}
+                alt={`${project.name} homepage preview`}
+                loading="lazy"
+                className="h-72 w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+
+            {/* Project Info */}
+            <div className="p-5">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">{project.name}</h3>
+                  <p className="text-sm font-medium text-slate-500">{project.subtitle}</p>
+                </div>
+                <span className={`shrink-0 rounded-full border px-3 py-1 text-xs font-bold ${project.tagColor}`}>
+                  {project.tag}
+                </span>
+              </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">{project.description}</p>
               <a
                 href={project.url}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-slate-900 to-slate-700 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 hover:from-slate-800 hover:to-slate-700"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-slate-900 to-slate-700 px-4 py-3 text-sm font-bold text-white transition-all duration-200 hover:from-brand-600 hover:to-accent-600"
               >
-                Live Demo
-                <ExternalLink size={16} />
+                View Live Site
+                <ExternalLink size={14} />
               </a>
             </div>
           </article>
         ))}
+      </div>
+
+      <div className="mt-10 text-center" data-reveal="up">
+        <a href="#contact" className="btn-accent btn-magnetic inline-flex items-center gap-2">
+          Start Your Project
+          <ArrowRight size={16} />
+        </a>
       </div>
     </section>
   );

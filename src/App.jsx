@@ -1,10 +1,13 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
+import WhyChooseMe from './components/WhyChooseMe';
+import Process from './components/Process';
 import Services from './components/Services';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import QuickContact from './components/QuickContact';
 import useScrollReveal from './hooks/useScrollReveal';
 
 function App() {
@@ -25,12 +28,15 @@ function App() {
       <main>
         <Hero />
         <Projects />
+        <WhyChooseMe />
+        <Process />
         <Services />
         <About />
         <Contact />
       </main>
 
       <Footer />
+      <QuickContact />
     </div>
   );
 }
