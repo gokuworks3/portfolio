@@ -1,13 +1,13 @@
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import SectionHeading from './SectionHeading';
-import restaurantPreview from '../assets/project-restaurant.jpg';
-import gymPreview from '../assets/project-gym.jpg';
-import hotelPreview from '../assets/project-hotel.jpg';
+import restaurantPreview from '../assets/project-restaurant.png';
+import gymPreview from '../assets/project-fitzone.png';
+import hotelPreview from '../assets/project-dreamstay.png';
 import photographyPreview from '../assets/project-photography.jpg';
 
 const projects = [
   {
-    name: 'First Bites',
+    name: 'FreshBites',
     subtitle: 'Restaurant Website',
     description: 'Modern restaurant website with menu, gallery, and contact sections.',
     url: 'https://first-bites-demo1.vercel.app/',
