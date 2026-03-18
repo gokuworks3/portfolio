@@ -1,9 +1,13 @@
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 import restaurantPreview from '../assets/project-restaurant.png';
+import restaurantPreviewMobile from '../assets/project-restaurant-mobile.jpg';
 import gymPreview from '../assets/project-fitzone.png';
 import hotelPreview from '../assets/project-dreamstay.png';
 import photographyPreview from '../assets/project-photography.jpg';
+
+const fallbackProjectPreview =
+  'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800"%3E%3Cdefs%3E%3ClinearGradient id="bg" x1="0" y1="0" x2="1" y2="1"%3E%3Cstop offset="0%25" stop-color="%23e2e8f0"/%3E%3Cstop offset="100%25" stop-color="%23cbd5e1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="1400" height="800" fill="url(%23bg)"/%3E%3Ctext x="50%25" y="50%25" fill="%23334155" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700" text-anchor="middle" dominant-baseline="middle"%3EPreview unavailable%3C/text%3E%3C/svg%3E';
 
 const projects = [
   {
@@ -13,7 +17,8 @@ const projects = [
     url: 'https://first-bites-demo1.vercel.app/',
     tag: 'Restaurant',
     tagColor: 'bg-orange-100 text-orange-700 border-orange-200',
-    image: restaurantPreview
+    image: restaurantPreview,
+    mobileImage: restaurantPreviewMobile
   },
   {
     name: 'Fit Zone',
@@ -37,7 +42,7 @@ const projects = [
     name: 'Lens & Light',
     subtitle: 'Photography Portfolio',
     description: 'Stunning photography portfolio with gallery and booking contact.',
-    url: 'https://lens-light-portfolio.vercel.app/',
+    url: 'https://photography-virid-eight.vercel.app/',
     tag: 'Photography',
     tagColor: 'bg-violet-100 text-violet-700 border-violet-200',
     image: photographyPreview
@@ -80,8 +85,24 @@ function Projects() {
             <div className="relative overflow-hidden bg-slate-100">
               <img
                 src={project.image}
+                srcSet={
+                  project.mobileImage
+                    ? `${project.mobileImage} 768w, ${project.image} 1768w`
+                    : undefined
+                }
+                sizes={project.mobileImage ? '(max-width: 768px) 100vw, 50vw' : undefined}
                 alt={`${project.name} homepage preview`}
-                loading="lazy"
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+                onError={(event) => {
+                  const image = event.currentTarget;
+                  if (image.dataset.fallbackApplied === 'true') {
+                    return;
+                  }
+
+                  image.dataset.fallbackApplied = 'true';
+                  image.src = fallbackProjectPreview;
+                }}
                 className="h-72 w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
             </div>
