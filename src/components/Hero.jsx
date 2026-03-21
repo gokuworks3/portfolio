@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, MessageCircleMore, CheckCircle2, Shield, Sparkles, Zap, Clock, Award } from 'lucide-react';
+import profilePhoto from '../assets/profile.jpg';
+import { BRAND, PRICING_OPTIONS, PROFILE } from '../data/siteContent';
 
 const techStack = ['React', 'Tailwind CSS', 'JavaScript', 'Vite'];
 
 const stats = [
-  { value: 4, suffix: '+', label: 'Projects', icon: Award },
+  { value: 4, suffix: '+', label: 'Live Demos', icon: Award },
   { value: 100, suffix: '%', label: 'Responsive', icon: Zap },
   { value: 24, prefix: '<', suffix: 'h', label: 'Response', icon: Clock }
 ];
 
 const niches = ['restaurants', 'gyms', 'hotels', 'photographers', 'local businesses'];
+const STARTING_PRICE = PRICING_OPTIONS[1].price;
 
 function useCountUp(end, duration = 2000) {
   const [count, setCount] = useState(0);
@@ -94,59 +97,69 @@ function StatCard({ stat }) {
 
 function Hero() {
   return (
-    <section id="home" className="section-container relative scroll-mt-28 pb-14 pt-36 sm:pb-16 sm:pt-40 lg:pb-20">
-      <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+    <section id="home" className="section-container relative scroll-mt-28 pb-14 pt-32 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-40">
+      <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div data-reveal="left">
           <div className="mb-5 flex flex-wrap gap-2">
             <p className="inline-flex items-center gap-2 rounded-full border border-brand-600/20 bg-brand-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-brand-700 shadow-sm">
-              Web Developer
+              {BRAND.name}
             </p>
             <p className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-              Available Now
+              Available for New Projects
             </p>
             <p className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-700 shadow-sm">
               <Sparkles size={12} />
-              Limited Slots
+              Plans from {STARTING_PRICE}
             </p>
           </div>
 
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            I Turn Your Ideas Into{' '}
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            {BRAND.name} builds{' '}
             <span className="relative">
-              <span className="gradient-text">Stunning Websites</span>
+              <span className="gradient-text">high-converting websites</span>
               <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500 opacity-60" />
             </span>
           </h1>
-          <p className="mt-5 text-lg font-semibold text-slate-700 sm:text-xl">
-            Specialized in building websites for{' '}
+          <p className="mt-5 text-base font-semibold text-slate-700 sm:text-xl">
+            Founded by {PROFILE.name}, we build websites for{' '}
             <TypeWriter words={niches} className="text-brand-600" />
           </p>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
-            Get a fast, mobile-friendly website that helps your business stand out online and convert visitors into customers.
+          <p className="mt-4 max-w-xl text-base leading-7 text-slate-600 sm:leading-8">
+            {PROFILE.heroHeadline}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#projects" className="btn-accent btn-magnetic group shadow-lg shadow-brand-500/25">
-              View My Work
+          <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:items-center">
+            <a href="#projects" className="btn-accent btn-magnetic group w-full shadow-lg shadow-brand-500/25 sm:w-auto">
+              View Portfolio
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
-            <a href="#contact" className="btn-ghost btn-magnetic group">
-              Get Free Quote
+            <a href="#pricing" className="btn-ghost btn-magnetic group w-full sm:w-auto">
+              View Pricing
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </a>
+            <a href={`https://wa.me/${PROFILE.whatsappNumber}`} target="_blank" rel="noreferrer" className="btn-primary btn-magnetic group w-full sm:w-auto">
+              WhatsApp Me
               <MessageCircleMore size={16} className="transition-transform group-hover:scale-110" />
             </a>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-4 py-2 shadow-sm">
               <Shield size={16} className="text-emerald-600" />
               <span className="text-sm font-bold text-emerald-700">
                 100% Satisfaction Guaranteed
               </span>
             </div>
+            <a href={`tel:${PROFILE.phoneHref}`} className="inline-flex min-h-11 items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-brand-300 hover:text-brand-700">
+              {PROFILE.phoneDisplay}
+            </a>
+            <a href={`mailto:${PROFILE.email}`} className="inline-flex min-h-11 max-w-full items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold break-all text-slate-700 shadow-sm transition-colors hover:border-brand-300 hover:text-brand-700 sm:text-sm">
+              {PROFILE.email}
+            </a>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -184,15 +197,24 @@ function Hero() {
 
           <div className="relative rounded-3xl border border-slate-200 bg-white/95 p-5 shadow-card backdrop-blur-sm sm:p-6">
             <div className="rounded-2xl border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 sm:p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <img src={profilePhoto} alt={`${PROFILE.name} profile`} className="h-12 w-12 rounded-xl border border-brand-200 object-cover" loading="eager" fetchPriority="high" />
+                <div>
+                  <p className="text-sm font-bold text-slate-900">{PROFILE.name}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">{PROFILE.role} · {BRAND.name}</p>
+                </div>
+              </div>
+
               <p className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-brand-700">
                 <Award size={16} />
-                What You Get
+                Project Promise
               </p>
               <ul className="space-y-3 text-sm text-slate-700">
                 {[
-                  'Responsive design that works on all devices',
+                  'Responsive layout that works on all devices',
                   'Fast-loading pages optimized for speed',
-                  'Modern, clean design that builds trust',
+                  'Modern, clean presentation that builds trust',
+                  `Transparent plans from ${STARTING_PRICE}`,
                   '30 days free support after launch'
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 rounded-xl border border-slate-100 bg-white px-4 py-3 shadow-sm transition-all hover:border-brand-200 hover:shadow-md">

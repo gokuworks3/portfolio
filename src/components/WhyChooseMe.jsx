@@ -1,6 +1,13 @@
 import { Zap, Shield, Clock, HeartHandshake } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 
+const revealDelayClasses = [
+  '[transition-delay:0ms]',
+  '[transition-delay:80ms]',
+  '[transition-delay:160ms]',
+  '[transition-delay:240ms]'
+];
+
 const values = [
   {
     icon: Zap,
@@ -46,13 +53,12 @@ function WhyChooseMe() {
         centered
       />
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {values.map((value, index) => (
           <div
             key={value.title}
             data-reveal="up"
-            style={{ transitionDelay: `${index * 80}ms` }}
-            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:border-brand-300 hover:shadow-card"
+            className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-300 hover:shadow-card sm:p-6 ${revealDelayClasses[index % revealDelayClasses.length]}`}
           >
             <div className={`absolute -right-6 -top-6 h-20 w-20 rounded-full bg-gradient-to-br ${value.gradient} opacity-10 blur-xl transition-opacity group-hover:opacity-20`} />
 

@@ -1,20 +1,19 @@
 import { Target, Lightbulb, Rocket } from 'lucide-react';
 import SectionHeading from './SectionHeading';
-import brandIcon from '../assets/brand-icon.png';
+import profilePhoto from '../assets/profile.jpg';
+import { BRAND, PROFILE } from '../data/siteContent';
 
 const techStack = [
   { label: 'React', color: 'bg-sky-50 text-sky-700 border-sky-200' },
-  { label: 'Tailwind CSS', color: 'bg-cyan-50 text-cyan-700 border-cyan-200' },
   { label: 'JavaScript', color: 'bg-amber-50 text-amber-700 border-amber-200' },
-  { label: 'Vite', color: 'bg-violet-50 text-violet-700 border-violet-200' },
   { label: 'HTML & CSS', color: 'bg-orange-50 text-orange-700 border-orange-200' },
   { label: 'Git & GitHub', color: 'bg-slate-50 text-slate-700 border-slate-200' }
 ];
 
 const highlights = [
-  { icon: Target, label: 'Focus', value: 'Small Business Websites', gradient: 'from-brand-500 to-cyan-500' },
-  { icon: Lightbulb, label: 'Approach', value: 'Conversion-Focused Design', gradient: 'from-amber-500 to-orange-500' },
-  { icon: Rocket, label: 'Goal', value: 'Premium, Fast, Mobile-First', gradient: 'from-violet-500 to-purple-500' }
+  { icon: Target, label: 'Focus', value: 'Professional Small Business Websites', gradient: 'from-brand-500 to-cyan-500' },
+  { icon: Lightbulb, label: 'Approach', value: 'Clean UI + Lead-Focused Structure', gradient: 'from-amber-500 to-orange-500' },
+  { icon: Rocket, label: 'Goal', value: 'Fast Launch and Real Business Results', gradient: 'from-violet-500 to-purple-500' }
 ];
 
 function About() {
@@ -24,8 +23,8 @@ function About() {
         <div data-reveal="left">
           <SectionHeading
             eyebrow="About Me"
-            title="Building Digital Success for Local Businesses"
-            description="I'm a web developer who specializes in creating modern, responsive websites for small businesses. My focus is on clean design, fast performance, and mobile-friendly experiences that convert visitors into customers."
+            title={`Meet ${PROFILE.name}, Founder of ${BRAND.name}`}
+            description={PROFILE.aboutDescription}
           />
 
           <div className="mt-6">
@@ -45,7 +44,7 @@ function About() {
           <div className="mt-6 grid max-w-md grid-cols-3 gap-3">
             <div className="surface-card p-4 text-center transition-all hover:-translate-y-1 hover:shadow-card">
               <p className="text-2xl font-extrabold text-slate-900">4+</p>
-              <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Projects</p>
+              <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Demo Projects</p>
             </div>
             <div className="surface-card p-4 text-center transition-all hover:-translate-y-1 hover:shadow-card">
               <p className="text-2xl font-extrabold text-slate-900">100%</p>
@@ -59,12 +58,22 @@ function About() {
         </div>
 
         <div data-reveal="right" className="rounded-3xl border border-slate-200 bg-white p-6 shadow-card sm:p-7">
-          <div className="mx-auto flex h-24 w-24 items-center justify-center overflow-hidden rounded-2xl border-2 border-brand-300 bg-slate-950 shadow-lg">
-            <img src={brandIcon} alt="Goku Works logo" className="h-[80%] w-[80%] object-contain" />
+          <div className="mx-auto flex h-28 w-28 items-center justify-center overflow-hidden rounded-2xl border-2 border-brand-300 bg-slate-950 shadow-lg">
+            <img src={profilePhoto} alt={`${PROFILE.name} photo`} className="h-full w-full object-cover" loading="lazy" />
           </div>
 
-          <p className="mt-5 text-center text-xl font-bold text-slate-900">Gopalakrishan M</p>
-          <p className="text-center text-sm font-medium text-brand-600">Web Developer</p>
+          <p className="mt-5 text-center text-xl font-bold text-slate-900">{PROFILE.name}</p>
+          <p className="text-center text-sm font-medium text-brand-600">{PROFILE.role}</p>
+          <p className="mt-1 text-center text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">{PROFILE.location}</p>
+
+          <div className="mt-4 space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
+            <a href={`tel:${PROFILE.phoneHref}`} className="block min-h-11 font-semibold text-slate-700 transition-colors hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2">
+              Phone: {PROFILE.phoneDisplay}
+            </a>
+            <a href={`mailto:${PROFILE.email}`} className="block min-h-11 break-all font-semibold text-slate-700 transition-colors hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2">
+              Email: {PROFILE.email}
+            </a>
+          </div>
 
           <div className="mt-6 space-y-3">
             {highlights.map((item) => (

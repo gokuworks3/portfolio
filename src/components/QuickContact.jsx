@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MessageCircle, X, Send, Clock } from 'lucide-react';
+import { PROFILE } from '../data/siteContent';
 
 function QuickContact() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', message: '' });
   const [status, setStatus] = useState('idle');
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,7 +25,7 @@ function QuickContact() {
     setStatus('sending');
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/gokuworks3@gmail.com', {
+      const response = await fetch(`https://formsubmit.co/ajax/${PROFILE.email}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -39,21 +51,21 @@ function QuickContact() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 left-4 right-4 z-50 flex justify-end sm:bottom-6 sm:left-auto sm:right-6">
       {/* Expandable panel */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-80 animate-scaleIn rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
+        <div className="absolute bottom-16 right-0 w-[calc(100vw-2rem)] max-w-sm animate-scaleIn rounded-2xl border border-slate-200 bg-white p-5 shadow-card sm:w-96">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <p className="font-bold text-slate-900">Quick Message</p>
               <p className="flex items-center gap-1 text-xs text-slate-500">
                 <Clock size={12} />
-                Reply within 24 hours
+                {PROFILE.responseTime}
               </p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="rounded-lg p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+              className="tap-target flex h-11 w-11 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
             >
               <X size={18} />
             </button>
@@ -62,7 +74,7 @@ function QuickContact() {
           {status === 'success' ? (
             <div className="rounded-xl bg-emerald-50 p-4 text-center">
               <p className="font-semibold text-emerald-700">Message sent!</p>
-              <p className="text-sm text-emerald-600">I'll get back to you soon.</p>
+              <p className="text-sm text-emerald-600">{PROFILE.name} will get back to you soon.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-3">
@@ -71,7 +83,7 @@ function QuickContact() {
                 placeholder="Your name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100"
+                className="form-control"
                 required
               />
               <textarea
@@ -79,13 +91,13 @@ function QuickContact() {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 rows={3}
-                className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100"
+                className="form-control min-h-28 resize-none py-3"
                 required
               />
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:from-brand-500 hover:to-accent-500 disabled:opacity-70"
+                className="btn-accent flex w-full"
               >
                 {status === 'sending' ? (
                   'Sending...'
@@ -107,7 +119,7 @@ function QuickContact() {
       {/* Floating button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`group relative flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${
+        className={`group relative flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 ${
           isOpen
             ? 'bg-slate-800 text-white'
             : 'bg-gradient-to-r from-brand-600 to-accent-600 text-white'

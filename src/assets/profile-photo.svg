@@ -1,0 +1,17 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="640" rx="80" fill="#0F172A"/>
+  <rect x="24" y="24" width="592" height="592" rx="62" stroke="#22D3EE" stroke-opacity="0.35" stroke-width="2"/>
+  <circle cx="320" cy="250" r="108" fill="url(#paint0_linear_1_2)"/>
+  <path d="M168 492C168 416.889 228.889 356 304 356H336C411.111 356 472 416.889 472 492V520H168V492Z" fill="url(#paint1_linear_1_2)"/>
+  <text x="320" y="584" text-anchor="middle" fill="#CFFAFE" font-family="Manrope, Segoe UI, sans-serif" font-size="38" font-weight="800" letter-spacing="4">M.GOPALAKRISHNAN</text>
+  <defs>
+    <linearGradient id="paint0_linear_1_2" x1="212" y1="142" x2="428" y2="358" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_1_2" x1="168" y1="356" x2="472" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
 import SectionHeading from './SectionHeading';
+import { PROFILE } from '../data/siteContent';
 
 const initialFormState = {
   name: '',
   email: '',
+  plan: '',
   message: ''
 };
 
-const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/gokuworks3@gmail.com';
+const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${PROFILE.email}`;
 
 function Contact() {
   const [formData, setFormData] = useState(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({
     type: 'idle',
-    message: 'I usually reply within 24 hours.'
+    message: PROFILE.responseTime
   });
 
   const handleInputChange = (event) => {
@@ -50,6 +52,7 @@ function Contact() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          plan: formData.plan || 'Not selected',
           message: formData.message,
           _subject: `New portfolio enquiry from ${formData.name}`,
           _replyto: formData.email,
@@ -72,7 +75,7 @@ function Contact() {
     } catch (error) {
       setSubmitStatus({
         type: 'error',
-        message: 'Could not send right now. Please email directly at gokuworks3@gmail.com.'
+        message: `Could not send right now. Please email directly at ${PROFILE.email}.`
       });
     } finally {
       setIsSubmitting(false);
@@ -83,44 +86,44 @@ function Contact() {
     <section id="contact" className="section-spacing section-container scroll-mt-24">
       <SectionHeading
         eyebrow="Contact"
-        title="Let's Build Your Next Website"
-        description="Have a project in mind? Reach out and let's discuss how your business can stand out online."
+        title="Let&apos;s Build Your Next Website"
+        description="Tell me your business goal and budget option. I will guide you and reply quickly with a clear plan."
         centered
       />
 
       <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
         <div data-reveal="left" className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-7">
           <a
-            href="mailto:gokuworks3@gmail.com"
-            className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand-300"
+            href={`mailto:${PROFILE.email}`}
+            className="flex min-h-11 items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2"
           >
             <span className="rounded-lg border border-brand-200 bg-brand-100 p-2 text-brand-700">
               <Mail size={18} />
             </span>
             <div>
               <p className="text-xs uppercase tracking-[0.12em] text-slate-500">Email</p>
-              <p className="text-sm font-semibold text-slate-900">gokuworks3@gmail.com</p>
+              <p className="text-sm font-semibold text-slate-900">{PROFILE.email}</p>
             </div>
           </a>
 
           <a
-            href="tel:+919342272925"
-            className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand-300"
+            href={`tel:${PROFILE.phoneHref}`}
+            className="flex min-h-11 items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2"
           >
             <span className="rounded-lg border border-brand-200 bg-brand-100 p-2 text-brand-700">
               <Phone size={18} />
             </span>
             <div>
               <p className="text-xs uppercase tracking-[0.12em] text-slate-500">Phone</p>
-              <p className="text-sm font-semibold text-slate-900">9342272925</p>
+              <p className="text-sm font-semibold text-slate-900">{PROFILE.phoneDisplay}</p>
             </div>
           </a>
 
           <a
-            href="https://wa.me/919342272925"
+            href={`https://wa.me/${PROFILE.whatsappNumber}`}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-emerald-300"
+            className="flex min-h-11 items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2"
           >
             <span className="rounded-lg border border-emerald-200 bg-emerald-100 p-2 text-emerald-700">
               <MessageCircle size={18} />
@@ -146,7 +149,7 @@ function Contact() {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-brand-500"
+                className="form-control"
                 placeholder="Your name"
               />
             </label>
@@ -159,9 +162,24 @@ function Contact() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-brand-500"
+                className="form-control"
                 placeholder="your@email.com"
               />
+            </label>
+
+            <label className="sm:col-span-2">
+              <span className="mb-2 block text-sm font-semibold text-slate-700">Preferred Plan</span>
+              <select
+                name="plan"
+                value={formData.plan}
+                onChange={handleInputChange}
+                className="form-control"
+              >
+                <option value="">Choose an option</option>
+                <option value="Option 1: Website + Domain + Hosting (₹4000-₹6000)">Option 1: Website + Domain + Hosting (₹4000-₹6000)</option>
+                <option value="Option 2: Only Website (Live Link) (₹2000)">Option 2: Only Website (Live Link) (₹2000)</option>
+                <option value="Custom">Need a custom quote</option>
+              </select>
             </label>
 
             <label className="sm:col-span-2">
@@ -172,7 +190,7 @@ function Contact() {
                 onChange={handleInputChange}
                 required
                 rows={5}
-                className="w-full resize-none rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-brand-500"
+                className="form-control min-h-36 resize-none py-3"
                 placeholder="Tell me about your project"
               />
             </label>
@@ -182,6 +200,15 @@ function Contact() {
             <button type="submit" disabled={isSubmitting} className="btn-accent rounded-lg px-5 py-3 disabled:cursor-not-allowed disabled:opacity-60">
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
+
+            <a
+              href={`https://wa.me/${PROFILE.whatsappNumber}`}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-ghost rounded-lg border-emerald-300 bg-emerald-50 px-5 py-3 text-emerald-700 hover:border-emerald-400 hover:text-emerald-800"
+            >
+              WhatsApp Now
+            </a>
 
             <p
               className={`text-sm ${

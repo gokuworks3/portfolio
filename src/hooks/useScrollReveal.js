@@ -2,7 +2,15 @@ import { useEffect } from 'react';
 
 function useScrollReveal() {
   useEffect(() => {
-    const revealElements = document.querySelectorAll('[data-reveal]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      document.querySelectorAll('[data-reveal]').forEach((element) => {
+        element.classList.add('is-visible');
+      });
+      return undefined;
+    }
+
+    const observedElements = new WeakSet();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -19,9 +27,30 @@ function useScrollReveal() {
       }
     );
 
-    revealElements.forEach((element) => observer.observe(element));
+    const observeRevealElements = () => {
+      document.querySelectorAll('[data-reveal]').forEach((element) => {
+        if (!observedElements.has(element)) {
+          observedElements.add(element);
+          observer.observe(element);
+        }
+      });
+    };
 
-    return () => observer.disconnect();
+    observeRevealElements();
+
+    const mutationObserver = new MutationObserver(() => {
+      observeRevealElements();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    return () => {
+      mutationObserver.disconnect();
+      observer.disconnect();
+    };
   }, []);
 }
 

@@ -1,14 +1,25 @@
+import { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Projects from './components/Projects';
-import WhyChooseMe from './components/WhyChooseMe';
-import Process from './components/Process';
-import Services from './components/Services';
-import About from './components/About';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import QuickContact from './components/QuickContact';
 import useScrollReveal from './hooks/useScrollReveal';
+
+const Projects = lazy(() => import('./components/Projects'));
+const Services = lazy(() => import('./components/Services'));
+const Pricing = lazy(() => import('./components/Pricing'));
+const WhyChooseMe = lazy(() => import('./components/WhyChooseMe'));
+const Process = lazy(() => import('./components/Process'));
+const About = lazy(() => import('./components/About'));
+const Contact = lazy(() => import('./components/Contact'));
+
+function SectionSkeleton() {
+  return (
+    <section className="section-container py-10 sm:py-12" aria-hidden="true">
+      <div className="h-40 animate-pulse rounded-2xl border border-slate-200 bg-slate-100/70" />
+    </section>
+  );
+}
 
 function App() {
   useScrollReveal();
@@ -27,12 +38,27 @@ function App() {
 
       <main>
         <Hero />
-        <Projects />
-        <WhyChooseMe />
-        <Process />
-        <Services />
-        <About />
-        <Contact />
+        <Suspense fallback={<SectionSkeleton />}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <Services />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <Pricing />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <WhyChooseMe />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <Process />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <Contact />
+        </Suspense>
       </main>
 
       <Footer />
