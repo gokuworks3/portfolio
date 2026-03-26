@@ -168,7 +168,7 @@ function Contact() {
             </label>
 
             <label className="sm:col-span-2">
-              <span className="mb-2 block text-sm font-semibold text-slate-700">Preferred Plan</span>
+              <span className="mb-2 block text-sm font-semibold text-slate-700">What do you need?</span>
               <select
                 name="plan"
                 value={formData.plan}
@@ -176,9 +176,10 @@ function Contact() {
                 className="form-control"
               >
                 <option value="">Choose an option</option>
-                <option value="Option 1: Website + Domain + Hosting (₹4000-₹6000)">Option 1: Website + Domain + Hosting (₹4000-₹6000)</option>
-                <option value="Option 2: Only Website (Live Link) (₹2000)">Option 2: Only Website (Live Link) (₹2000)</option>
-                <option value="Custom">Need a custom quote</option>
+                <option value="New website">New website</option>
+                <option value="Website redesign">Website redesign</option>
+                <option value="Landing page">Landing page</option>
+                <option value="Other">Other</option>
               </select>
             </label>
 

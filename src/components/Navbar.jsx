@@ -7,7 +7,6 @@ const navItems = [
   { label: 'Home', href: '#home' },
   { label: 'Projects', href: '#projects' },
   { label: 'Services', href: '#services' },
-  { label: 'Pricing', href: '#pricing' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' }
 ];
@@ -131,7 +130,7 @@ function Navbar() {
 
           <div className="flex items-center gap-2">
             <a href="#contact" className="hidden min-h-11 items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 md:inline-flex">
-              Get Quote
+              Get Started
               <ArrowRight size={14} />
             </a>
 

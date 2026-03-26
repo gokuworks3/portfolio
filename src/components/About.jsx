@@ -4,10 +4,9 @@ import profilePhoto from '../assets/profile.jpg';
 import { BRAND, PROFILE } from '../data/siteContent';
 
 const techStack = [
-  { label: 'React', color: 'bg-sky-50 text-sky-700 border-sky-200' },
-  { label: 'JavaScript', color: 'bg-amber-50 text-amber-700 border-amber-200' },
-  { label: 'HTML & CSS', color: 'bg-orange-50 text-orange-700 border-orange-200' },
-  { label: 'Git & GitHub', color: 'bg-slate-50 text-slate-700 border-slate-200' }
+  { label: 'HTML', color: 'bg-orange-50 text-orange-700 border-orange-200' },
+  { label: 'CSS', color: 'bg-sky-50 text-sky-700 border-sky-200' },
+  { label: 'JavaScript', color: 'bg-amber-50 text-amber-700 border-amber-200' }
 ];
 
 const highlights = [

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, MessageCircleMore, CheckCircle2, Shield, Sparkles, Zap, Clock, Award } from 'lucide-react';
+import { ArrowRight, MessageCircleMore, CheckCircle2, Shield, Zap, Clock, Award } from 'lucide-react';
 import profilePhoto from '../assets/profile.jpg';
-import { BRAND, PRICING_OPTIONS, PROFILE } from '../data/siteContent';
+import { BRAND, PROFILE } from '../data/siteContent';
 
-const techStack = ['React', 'Tailwind CSS', 'JavaScript', 'Vite'];
+const techStack = ['HTML', 'CSS', 'JavaScript'];
 
 const stats = [
   { value: 4, suffix: '+', label: 'Live Demos', icon: Award },
@@ -12,7 +12,6 @@ const stats = [
 ];
 
 const niches = ['restaurants', 'gyms', 'hotels', 'photographers', 'local businesses'];
-const STARTING_PRICE = PRICING_OPTIONS[1].price;
 
 function useCountUp(end, duration = 2000) {
   const [count, setCount] = useState(0);
@@ -111,10 +110,6 @@ function Hero() {
               </span>
               Available for New Projects
             </p>
-            <p className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-700 shadow-sm">
-              <Sparkles size={12} />
-              Plans from {STARTING_PRICE}
-            </p>
           </div>
 
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
@@ -133,15 +128,11 @@ function Hero() {
           </p>
 
           <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:items-center">
-            <a href="#projects" className="btn-accent btn-magnetic group w-full shadow-lg shadow-brand-500/25 sm:w-auto">
+            <a href="#projects" className="btn-accent group w-full sm:w-auto">
               View Portfolio
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
-            <a href="#pricing" className="btn-ghost btn-magnetic group w-full sm:w-auto">
-              View Pricing
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <a href={`https://wa.me/${PROFILE.whatsappNumber}`} target="_blank" rel="noreferrer" className="btn-primary btn-magnetic group w-full sm:w-auto">
+            <a href={`https://wa.me/${PROFILE.whatsappNumber}`} target="_blank" rel="noreferrer" className="btn-primary group w-full sm:w-auto">
               WhatsApp Me
               <MessageCircleMore size={16} className="transition-transform group-hover:scale-110" />
             </a>
@@ -214,7 +205,6 @@ function Hero() {
                   'Responsive layout that works on all devices',
                   'Fast-loading pages optimized for speed',
                   'Modern, clean presentation that builds trust',
-                  `Transparent plans from ${STARTING_PRICE}`,
                   '30 days free support after launch'
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 rounded-xl border border-slate-100 bg-white px-4 py-3 shadow-sm transition-all hover:border-brand-200 hover:shadow-md">

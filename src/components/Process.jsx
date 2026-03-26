@@ -26,7 +26,7 @@ const steps = [
   {
     number: '03',
     title: 'Development',
-    description: 'Built with React & Tailwind for speed and performance. Custom code, no templates.',
+    description: 'Built with HTML, CSS & JavaScript for speed and performance. Custom code, no templates.',
     icon: Code2,
     gradient: 'from-emerald-500 to-teal-500'
   },
